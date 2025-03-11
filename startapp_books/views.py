@@ -1,26 +1,44 @@
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
-from django.shortcuts import render
-from datetime import datetime
+from . import models
 
-def about_me(request):
+#get id
+def film_detail(request, id):
+    if request.method == 'GET':
+        film_id = get_object_or_404(models.Films, id=id)
+        return render(
+            request,
+            template_name='book_detail.html',
+            context={
+                'film_id': film_id,
+            }
+        )
+
+
+#list
+def films_list(request):
+    if request.method == 'GET':
+        query = models.Films.objects.all()
+        return render(
+            request,
+            template_name='book.html',
+            context={
+                'query': query,
+            }
+        )
+
+
+
+
+def emodji(request):
     if request.method == "GET":
-        return HttpResponse('Kubatbekov Nurdos')
+        return HttpResponse("🧠")
 
 
-
-def animals(request):
-    # if request.method == "GET":
-    #     return HttpResponse("Это моя собака.Его зовут Бойка!")
+def text(request):
     if request.method == "GET":
-        return HttpResponse("""
-            <h1>Это моя собака. Его зовут Бойка!</h1>
-            <img src='https://storage.yandexcloud.net/yac-wh-sb-prod-s3-media-03005/uploads/article/1598/abce4a3bc3a9f343180cc20b81fbbeb4.webp' 
-                 width='300px' height='auto' 
-                 alt='Моя собака Бойка'>
-        """)
+        return HttpResponse("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.")
 
-
-def time(request):
+def image(request):
     if request.method == "GET":
-        current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        return HttpResponse(f"<h1>Текущее дата и время : {current_time}</h1>")
+        return HttpResponse("<img src='https://cdn.trinixy.ru/pics6/20230801/240813_1_trinixy_ru.jpg'>")
