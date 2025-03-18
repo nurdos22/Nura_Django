@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'startapp_books',
     'hastags',
+    'basket',
 ]
 
 MIDDLEWARE = [

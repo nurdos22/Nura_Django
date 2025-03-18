@@ -21,8 +21,8 @@ class Films(models.Model):
 
 
     class Meta:
-        verbose_name = 'фильм'
-        verbose_name_plural = 'фильмы'
+        verbose_name = 'книга'
+        verbose_name_plural = 'книги'
 
 
 class Reviews(models.Model):
