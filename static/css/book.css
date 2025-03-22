@@ -43,3 +43,9 @@ footer {
 .card {
   height: auto; /* Убедитесь, что высота карточки автоматически адаптируется */
 }
+
+
+.mt-4 .text-center_h1 h1 {
+  color: #fff;
+
+}

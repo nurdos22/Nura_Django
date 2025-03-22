@@ -1,8 +1,9 @@
 from django.urls import path
-from . import views
+from .views import AllCategoryFilmView, FantasticCategoryFilmView, ComedyCategoryFilmView
+
 
 urlpatterns = [
-    path('all_hashtags_films/', views.all_category_film, name='all'),
-    path('comedy_hashtags_films/', views.comedy_category_film, name='comedy'),
-    path('fantastic_hashtags_films/', views.fantastic_category_film, name='fantastic'),
+    path('films/all/', AllCategoryFilmView.as_view(), name='all_category_film'),
+    path('films/fantastic/', FantasticCategoryFilmView.as_view(), name='fantastic_category_film'),
+    path('films/comedy/', ComedyCategoryFilmView.as_view(), name='comedy_category_film'),
 ]

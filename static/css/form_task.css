@@ -9,7 +9,10 @@
 
 .task-form h1 {
     text-align: center;
+
 }
+
+
 
 .task-form input,
 .task-form textarea,
@@ -42,3 +45,6 @@
     background: #f44336;
     color: white;
 }
+
+
+

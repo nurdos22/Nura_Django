@@ -1,24 +1,26 @@
-from django.shortcuts import render
-from . import models
+from django.views.generic import ListView
+from .models import Post
 
 
-def all_category_film(request):
-    if request.method == 'GET':
-        query = models.Post.objects.all()
-        return render(request,
-                      template_name='tags/all_category_film.html',
-                      context={'query': query}
-                      )
-def fantastic_category_film(request):
-    if request.method == 'GET':
-        query = models.Post.objects.all().filter(tags__name='Фантастика')
-        return render(request,
-                      template_name='tags/fantastic_category_film.html',
-                      context={'query': query}
-                      )
-def comedy_category_film(request):
-    if request.method == 'GET':
-        query = models.Post.objects.all().filter(tags__name='Комедия')
-        return render(request,
-                      template_name='tags/comedy_category_film.html',
-                      context={'query': query})
+class AllCategoryFilmView(ListView):
+    model = Post
+    template_name = 'tags/all_category_film.html'
+    context_object_name = 'query'
+
+
+class FantasticCategoryFilmView(ListView):
+    model = Post
+    template_name = 'tags/fantastic_category_film.html'
+    context_object_name = 'query'
+
+    def get_queryset(self):
+        return Post.objects.filter(tags__name='Фантастика')
+
+
+class ComedyCategoryFilmView(ListView):
+    model = Post
+    template_name = 'tags/comedy_category_film.html'
+    context_object_name = 'query'
+
+    def get_queryset(self):
+        return Post.objects.filter(tags__name='Комедия')

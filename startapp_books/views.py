@@ -1,44 +1,37 @@
-from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse
+from django.shortcuts import get_object_or_404
+from django.views import generic
+from django.views import generic
 from . import models
 
-#get id
-def film_detail(request, id):
-    if request.method == 'GET':
-        film_id = get_object_or_404(models.Films, id=id)
-        return render(
-            request,
-            template_name='book_detail.html',
-            context={
-                'film_id': film_id,
-            }
-        )
+
+class SearchBooksView(generic.ListView):
+    template_name = 'book.html'
+    context_object_name = 'query'
+
+    def get_queryset(self):
+        return models.Films.objects.filter(title__icontains=self.request.GET.get('q'))
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['q'] = self.request.GET.get('q')
+        return context
 
 
-#list
-def films_list(request):
-    if request.method == 'GET':
-        query = models.Films.objects.all()
-        return render(
-            request,
-            template_name='book.html',
-            context={
-                'query': query,
-            }
-        )
+class BookDetailView(generic.DetailView):
+    template_name = 'book_detail.html'
+    context_object_name = 'book_id'
+
+    def get_object(self, *args, **kwargs):
+        book_id = self.kwargs.get('id')
+        return get_object_or_404(models.Films, id=book_id)
 
 
+class BookListView(generic.ListView):
+    template_name = 'book.html'
+    context_object_name = 'query'
+    model = models.Films
+
+    def get_queryset(self, *args, **kwargs):
+        return self.model.objects.all()
 
 
-def emodji(request):
-    if request.method == "GET":
-        return HttpResponse("🧠")
-
-
-def text(request):
-    if request.method == "GET":
-        return HttpResponse("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.")
-
-def image(request):
-    if request.method == "GET":
-        return HttpResponse("<img src='https://cdn.trinixy.ru/pics6/20230801/240813_1_trinixy_ru.jpg'>")

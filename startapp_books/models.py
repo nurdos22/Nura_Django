@@ -5,16 +5,24 @@ class Films(models.Model):
     GENRE = (
         ('Ужасы', 'Ужасы'),
         ('Комедия', 'Комедия'),
+        ('Про любовь ', 'Про любовь'),
+        ('Фантастика ', 'Фантастика'),
+        ('Психология', 'Психология'),
+        ('Поэма', 'Поэма'),
+        ('Детское\Сказка', 'Детское\Сказка'),
+        ('Драма', 'Драма'),
+        ('Другое', 'Другое')
     )
+
     image = models.ImageField(upload_to='films/')
     title = models.CharField(max_length=100)
     description = models.TextField()
     price = models.FloatField()
     created_at = models.DateTimeField(auto_now_add=True)
-    genre = models.CharField(max_length=10, choices=GENRE)
+    genre = models.CharField(max_length=15, choices=GENRE)
     time = models.TimeField()
     director = models.CharField(max_length=100)
-    trailer = models.URLField(null=True)
+    # trailer = models.URLField(null=True)
 
     def __str__(self):
         return self.title
