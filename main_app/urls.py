@@ -9,6 +9,7 @@ urlpatterns = [
     path('', include('startapp_books.urls')),
     path('', include('hastags.urls')),
     path('', include('basket.urls')),
+    path('', include('parser_app.urls')),
 
 ]
 

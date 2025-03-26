@@ -20,15 +20,15 @@
  <div class="container mt-4">
      <div class="movie-card">
          <div class="card">
-             <img src="{{ film_id.image.url }}" class="card-img-top" alt="Фильм">
+             <img src="{{ book_id.image.url }}" class="card-img-top" alt="Фильм">
              <div class="card-body">
-                 <h5 class="card-title">{{ film_id.title }}</h5>
-                 <p class="card-text">{{ film_id.description }}</p>
-                 <p><strong>Цена билета:</strong>{{ film_id.price }}</p>
-                 <p><strong>Дата выхода:</strong>{{ film_id.created_at }}</p>
-                 <p><strong>Жанр:</strong>{{ film_id.genre }}</p>
-                 <p><strong>Время:</strong>{{ film_id.time }}</p>
-                 <p><strong>Режиссер:</strong>{{ film_id.director }}</p>
+                 <h5 class="card-title">{{ book_id.title }}</h5>
+                 <p class="card-text">{{ book_id.description }}</p>
+                 <p><strong>Цена билета:</strong>{{ book_id.price }}</p>
+                 <p><strong>Дата выхода:</strong>{{ book_id.created_at }}</p>
+                 <p><strong>Жанр:</strong>{{ book_id.genre }}</p>
+                 <p><strong>Время:</strong>{{ book_id.time }}</p>
+                 <p><strong>Режиссер:</strong>{{ book_id.director }}</p>
                  <iframe width="100%" height="315" src="{{ film_id.trailer}}" frameborder="0" allowfullscreen></iframe>
              </div>
          </div>
@@ -37,7 +37,7 @@
      <!-- Блок для комментариев -->
      <div class="comment-section">
          <h5>Комментарии</h5>
-         {% for i in film_id.reviews.all %}
+         {% for i in book_id.reviews.all %}
          <div class="comment">
              <p> {{ i.created_at }}: {{ i.description }} <strong>Оценка:</strong> {{ i.grade }}</p>
          </div>

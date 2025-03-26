@@ -1,7 +1,6 @@
 from django.db import models
 
 class Films(models.Model):
-    objects = None
     GENRE = (
         ('Ужасы', 'Ужасы'),
         ('Комедия', 'Комедия'),

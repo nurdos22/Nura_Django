@@ -9,7 +9,7 @@ class SearchBooksView(generic.ListView):
     context_object_name = 'query'
 
     def get_queryset(self):
-        return models.Films.objects.filter(title__icontains=self.request.GET.get('q'))
+        return models.Books.objects.filter(title__icontains=self.request.GET.get('q'))
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -22,8 +22,7 @@ class BookDetailView(generic.DetailView):
     context_object_name = 'book_id'
 
     def get_object(self, *args, **kwargs):
-        book_id = self.kwargs.get('id')
-        return get_object_or_404(models.Films, id=book_id)
+        return get_object_or_404(models.Films, id=self.kwargs.get('id'))
 
 
 class BookListView(generic.ListView):

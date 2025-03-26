@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'startapp_books',
     'hastags',
     'basket',
+    'parser_app',
 ]
 
 MIDDLEWARE = [
