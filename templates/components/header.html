@@ -31,11 +31,34 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link enable" href="" style="color: yellow;">Регистрация</a>
+
+               <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                       aria-expanded="false" style="color: yellow;">
+                        Регистрация
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'users:register' %}">Регистрация</a></li>
+                        <li><a class="dropdown-item" href="{% url 'users:login' %}">Авторизация</a></li>
+                        <li><a class="dropdown-item" href="{% url 'users:user_list' %}">Личный кабинет</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                    </ul>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link enable" href="{% url 'litnet_list' %}" style="color: yellow;">Другие фильмы</a>
+                 <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                       aria-expanded="false" style="color: yellow;">
+                        Другие фильмы и книги
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'parser_form' %}">Спарсит</a></li>
+                        <li><a class="dropdown-item" href="{% url 'litnet_list' %}">Книги с litnet</a></li>
+                        <li><a class="dropdown-item" href="{% url 'rezka_list' %}">Фильмы с Rezka</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                    </ul>
                 </li>
             </ul>
             <form action="{% url 'search' %}" method="GET" class="d-flex" role="search">

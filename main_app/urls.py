@@ -10,6 +10,7 @@ urlpatterns = [
     path('', include('hastags.urls')),
     path('', include('basket.urls')),
     path('', include('parser_app.urls')),
+    path('', include('users.urls')),
 
 ]
 
